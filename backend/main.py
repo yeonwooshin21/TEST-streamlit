@@ -1,13 +1,12 @@
-# backend/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from . import models
+from .database import engine
 
-# --- 앱 기본 설정 ---
-app = FastAPI(
-    title="YouTube OCR Backend",
-    description="YouTube 영상 OCR 및 텍스트 관리 백엔드 API",
-    version="1.0.0"
-)
+# DB 초기화 (테이블 생성)
+models.Base.metadata.create_all(bind=engine)
+
+app = FastAPI()
 
 # --- CORS 설정 (Streamlit과 연동 가능하도록 허용) ---
 app.add_middleware(
@@ -21,7 +20,7 @@ app.add_middleware(
 # --- 기본 라우트 (테스트용) ---
 @app.get("/")
 def read_root():
-    return {"message": "🚀 FastAPI 서버가 정상적으로 실행되었습니다!"}
+    return {"message": "🚀 FastAPI + SQLite 연결 성공!"}
 
 
 # --- 간단한 API 예시 ---
