@@ -1,7 +1,7 @@
 # backend/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-ㅈ
+
 # --- 앱 기본 설정 ---
 app = FastAPI(
     title="YouTube OCR Backend",
