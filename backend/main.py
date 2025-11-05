@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from . import models
 from .database import engine
+from .routes import user
 
 # DB 초기화 (테이블 생성)
 models.Base.metadata.create_all(bind=engine)
@@ -22,8 +23,5 @@ app.add_middleware(
 def read_root():
     return {"message": "🚀 FastAPI + SQLite 연결 성공!"}
 
-
-# --- 간단한 API 예시 ---
-@app.get("/status")
-def get_status():
-    return {"status": "ok", "detail": "서버가 정상적으로 작동 중입니다."}
+# ✅ 유저 관련 API 라우터 연결
+app.include_router(user.router)
