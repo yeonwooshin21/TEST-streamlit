@@ -7,7 +7,13 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return db_user
+    # ✅ ORM 변환 대신, 명시적으로 dict로 리턴
+    return schemas.UserResponse(
+        id=db_user.id,
+        name=db_user.name,
+        email=db_user.email,
+        created_at=db_user.created_at
+    )
 
 def get_users(db: Session):
     return db.query(models.User).all()
