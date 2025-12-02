@@ -17,3 +17,6 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 def get_users(db: Session):
     return db.query(models.User).all()
+
+def get_videos(db: Session):
+    return db.query(models.Video).all()

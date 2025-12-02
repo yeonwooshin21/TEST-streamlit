@@ -9,3 +9,10 @@ class User(Base):
     name = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+
+class Video(Base):
+    __tablename__ = "videos"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, nullable=False)
+    url = Column(String, nullable=False)

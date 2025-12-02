@@ -15,3 +15,17 @@ class UserResponse(UserBase):
 
     class Config:
         from_attributes = True  # ✅ Pydantic v2에서는 이렇게 써야 함
+
+class VideoBase(BaseModel):
+    title: str
+    url: str
+
+class VideoCreate(VideoBase):
+    pass
+
+class Video(VideoBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
