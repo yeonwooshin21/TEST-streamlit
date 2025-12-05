@@ -1,7 +1,6 @@
 # backend/database.py
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 # SQLite 데이터베이스 경로 설정
 SQLALCHEMY_DATABASE_URL = "sqlite:///./app.db"

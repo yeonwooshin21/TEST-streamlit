@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from . import models
-from .database import engine
+from .database import Base, engine
 from .routes import videos, user
 
 # DB 초기화 (테이블 생성)
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -26,7 +26,3 @@ def read_root():
 # ✅ 유저 관련 API 라우터 연결
 app.include_router(user.router)
 app.include_router(videos.router)
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello World"}
